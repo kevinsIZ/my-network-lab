@@ -61,3 +61,20 @@ DHCP pools served by Router100:
 
 ![Router100 Configuration](Router100-conf.png)
 
+### Router1 Configuration
+
+Router1 provides WAN connectivity for the right-side network and routes traffic between the right-side LAN (VLAN50) and Router100.  
+It also receives static routes from Router100 that allow full communication between all VLANs.
+
+Key responsibilities:
+- Connects to Router100 over the WAN link.
+- Acts as the *default gateway* for the VLAN50 subnet.
+- Provides *DHCP services* for VLAN50.
+- Forwards traffic between VLAN50 and all left-side VLANs (10, 20, 99).
+- Uses WAN IP address *200.0.0.2*, which communicates with Router100’s 200.0.0.1.
+- Supports NAT traffic from Router100 (outside interface is on this router).
+
+DHCP pool served by Router1:
+- *192.168.50.0/24* — PCs on the right-side LAN (VLAN50)
+
+![Router1 Configuration](Router1-conf.png)

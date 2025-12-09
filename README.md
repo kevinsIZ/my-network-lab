@@ -78,3 +78,14 @@ DHCP pool served by Router1:
 - *192.168.50.0/24* — PCs on the right-side LAN (VLAN50)
 
 ![Router1 Configuration](Router1-conf.png)
+
+### Switch0 Configuration
+
+This access switch serves VLAN 50 on the right-side network segment.
+
+Key functions:
+- Receives an uplink from Router1 on *Gig0/1* (carrying VLAN 50).
+- Provides access ports for PCs in VLAN 50 (PC11 and PC12).
+- Extends Layer 2 connectivity for the right-side network segment.
+
+![Switch0 Configuration](Switch0-conf.png)

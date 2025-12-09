@@ -38,3 +38,25 @@ This access switch serves VLAN 20 on the left-side network segment.
 
 ![Switch200 Configuration](Switch200-conf.png)
 
+### Router100 Configuration
+
+This router provides inter-VLAN routing, DHCP services, and WAN connectivity for all left-side VLANs.  
+It also performs NAT to allow internal VLANs to reach the WAN via Router1.
+
+Key responsibilities:
+- Acts as the default gateway for *VLAN 10, VLAN 20, and VLAN 99*.
+- Performs inter-VLAN routing using subinterfaces (Router-on-a-Stick).
+- Provides DHCP services for the following VLAN subnets:
+  - 192.168.10.0/24 (VLAN 10)
+  - 192.168.20.0/24 (VLAN 20)
+  - 192.168.99.0/24 (Management VLAN – VLAN 99)
+- Uses *200.0.0.1* as its WAN interface address.
+- Connects to Router1 for WAN communication.
+- Translates internal private IP addresses to the WAN IP using NAT overload (PAT).
+
+DHCP pools served by Router100:
+- *192.168.10.0/24* – clients in VLAN 10
+- *192.168.20.0/24* – clients in VLAN 20
+- *192.168.99.0/24* – management devices in VLAN 99
+
+![Router100 Configuration](Router100-conf.png)

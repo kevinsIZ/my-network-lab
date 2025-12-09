@@ -89,3 +89,68 @@ Key functions:
 - Extends Layer 2 connectivity for the right-side network segment.
 
 ![Switch0 Configuration](Switch0-conf.png)
+
+## Testing & Verification
+
+This section shows the key tests that were performed to verify connectivity, routing, SSH management and management VLAN isolation.
+
+### 1. PC-to-PC Connectivity (Same VLAN)
+
+- *PC1 → PC4* (VLAN10 – left-side LAN)  
+  Successful ping proving basic Layer 3 connectivity within VLAN10.
+
+![PC1 to PC4 ping](PC1-PC4.png)
+
+### 2. Inter-VLAN & WAN Connectivity (Left ↔ Right Side)
+
+- *PC2 → PC11* (VLAN20 → VLAN50, across the WAN link)  
+  Confirms that inter-VLAN routing on Router100 and the WAN link to Router1 work correctly.
+
+![PC2 to PC11 ping](PC2-PC11.png)
+
+- *PC12 → PC1* (VLAN50 → VLAN10, across the WAN link)  
+  Shows that traffic from the right-side LAN can reach the left-side VLANs via the WAN.
+
+![PC12 to PC1 ping](PC12-PC1.png)
+
+### 3. Management VLAN (VLAN99) Isolation
+
+- *PC1 → 192.168.99.10 (Switch100 SVI – VLAN99)*  
+  Ping fails with Destination host unreachable, showing that the ACL on Router100 successfully blocks user VLANs from reaching the management VLAN.
+
+![PC1 to VLAN99 blocked ping](PC1-VLAN99.png)
+
+### 4. SSH Remote Management
+
+- *SSH from PC1 to Switch100*  
+  show ip interface brief output over SSH, confirming:
+  - VLAN99 SVI has IP address 192.168.99.10
+  - Trunk and access ports are up and correctly assigned to VLANs 10, 20, and 99.
+
+![SSH show ip interface brief on Switch100](SSH-Brief.png)
+
+### 5. WAN Link Verification (Router100 ↔ Router1)
+
+- *Router1 → Router100 (200.0.0.1)*  
+  Successful ping showing that Router1 reaches Router100 over the WAN.
+
+![Router1 to Router100 ping](Router1-Router100.png)
+
+- *Router100 → Router1 (200.0.0.2)*  
+  Successful ping showing bidirectional connectivity on the WAN link.
+
+![Router100 to Router1 ping](Router100-Router1.png)
+
+### 6. Core Switch Configuration (Switch100)
+
+The following screenshots capture the full running configuration for Switch100, split into two parts:
+
+- *Switch100 Show Run – Part 1*  
+  General settings, usernames, SSH, VLAN access ports and trunk ports.
+
+![Switch100 running configuration – Part 1](Switch100-Showrun-1.png)
+
+- *Switch100 Show Run – Part 2*  
+  VLAN99 SVI (192.168.99.10), default gateway, and VTY lines configured for SSH access.
+
+![Switch100 running configuration – Part 2](Switch100-Showrun-2.png)

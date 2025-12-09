@@ -146,11 +146,9 @@ This section shows the key tests that were performed to verify connectivity, rou
 The following screenshots capture the full running configuration for Switch100, split into two parts:
 
 - *Switch100 Show Run – Part 1*  
-  General settings, usernames, SSH, VLAN access ports and trunk ports.
-
-![Switch100 running configuration – Part 1](Switch100-Showrun-1.png)
+  General settings, usernames, SSH, VLAN access ports and trunk ports.  
+  ![Switch100 running configuration – Part 1](Switch100%20-%20Showrun-1.png)
 
 - *Switch100 Show Run – Part 2*  
-  VLAN99 SVI (192.168.99.10), default gateway, and VTY lines configured for SSH access.
-
-![Switch100 running configuration – Part 2](Switch100-Showrun-2.png)
+  VLAN99 SVI (192.168.99.10), default gateway, and VTY lines configured for SSH access.  
+  ![Switch100 running configuration – Part 2](Switch100%20-%20Showrun-2.png)
